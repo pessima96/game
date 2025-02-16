@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 
 public class Main {
     static Hero chracter = new Hero();
+    static Floor floor = new Floor();
     public static void main(String[] args) {
         Screen screen = new Screen();
         Panel panel = new Panel();
@@ -18,6 +19,7 @@ public class Main {
                 switch (e.getKeyCode()) {
                     case KeyEvent.VK_ESCAPE -> System.exit(0);
                     case KeyEvent.VK_D -> chracter.moveRight();
+                    case KeyEvent.VK_A -> chracter.moveLeft();
                 }
             }
 
@@ -27,6 +29,7 @@ public class Main {
 
                 switch (e.getKeyCode()) {
                     case KeyEvent.VK_D -> chracter.stop();
+                    case KeyEvent.VK_A -> chracter.stop();
                 }
             }
         });

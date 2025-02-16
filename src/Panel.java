@@ -34,7 +34,8 @@ public class Panel extends JPanel implements Runnable {
         super.paint(g);
         if (imageH != null)
             g.drawImage(imageH, Main.chracter.getX(), Main.chracter.getY(), null);
-
+        g.drawRect(Main.chracter.getRec().x, Main.chracter.getRec().y, Main.chracter.getRec().width,  Main.chracter.getRec().height);
+        g.drawRect(Main.floor.x, Main.floor.y, Main.floor.width, Main.floor.height);
     }
 
     private void update() {
