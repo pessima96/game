@@ -20,6 +20,7 @@ public class Main {
                     case KeyEvent.VK_ESCAPE -> System.exit(0);
                     case KeyEvent.VK_D -> chracter.moveRight();
                     case KeyEvent.VK_A -> chracter.moveLeft();
+                    case KeyEvent.VK_SPACE -> chracter.moveJump();
                 }
             }
 
@@ -28,8 +29,7 @@ public class Main {
                 super.keyReleased(e);
 
                 switch (e.getKeyCode()) {
-                    case KeyEvent.VK_D -> chracter.stop();
-                    case KeyEvent.VK_A -> chracter.stop();
+                    case KeyEvent.VK_D, KeyEvent.VK_A, KeyEvent.VK_SPACE -> chracter.stop();
                 }
             }
         });

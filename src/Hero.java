@@ -1,10 +1,9 @@
 import java.awt.*;
 
 public class Hero {
-    private final int SPEED = 10;
     private int x = 100, y = 100;
-    private int speedX;
-    private Rectangle rec = new Rectangle(x, y, 100, 50);
+    private int speedX, speedY = Const.SPEED;
+    private Rectangle rec = new Rectangle(x, y, Const.CHARACTER_WIDTH + 50, 10);
     private Direction direction = Direction.NON;
 
     public int getX() {
@@ -21,17 +20,37 @@ public class Hero {
 
     public void update() {
         x += speedX;
-        rec.setBounds(x, y, 100, 50);
+        y += speedY;
+        rec.setBounds(x, y + Const.CHARACTER_HEIGHT + 40, Const.CHARACTER_WIDTH, 10);
+        collision();
+        flyDown();
+    }
+
+    private void collision() {
+        if (rec.intersects(Main.floor)) {
+            y = Main.floor.y - Const.CHARACTER_HEIGHT - 50;
+        }
     }
 
     public void moveRight() {
-        speedX = SPEED;
+        speedX = Const.SPEED;
         direction = Direction.RIGHT;
     }
 
     public void moveLeft() {
-        speedX = -SPEED;
+        speedX = -Const.SPEED;
         direction = Direction.LEFT;
+    }
+
+    public void moveJump(){
+        if (rec.intersects(Main.floor)) {
+            speedY -= 100;
+            direction = Direction.JUMP;
+        }
+    }
+
+    public void flyDown(){
+        speedY = Const.SPEED;
     }
 
     public Direction getDirection() {
@@ -40,6 +59,7 @@ public class Hero {
 
     public void stop() {
         speedX = 0;
+        speedY = 0;
         direction = Direction.NON;
     }
 }
